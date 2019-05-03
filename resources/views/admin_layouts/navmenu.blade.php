@@ -21,9 +21,8 @@
 
 
              {{-- Users Control Panel Start --}}
-            <li class="header">Users Control</li>
             @role(['superadministrator','administrator'])
-
+            <li class="header">Users Control</li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-users"></i>
@@ -44,6 +43,7 @@
 
              {{-- Daily Logs Start --}}
              @role(['superadministrator','administrator'])
+            <li class="header">Logs Control</li>
              <li>
                  <a href="/log-viewer" target="_blank"><i class="fa fa-history"></i> <span class="nav-label">Get Logs</span></a>
              </li>

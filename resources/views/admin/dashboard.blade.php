@@ -218,9 +218,10 @@
           <!-- /.col -->
         </div>
         <!-- /.row -->
-  
+        
+
         <!-- Main row -->
-        <div class="row">
+        {{-- <div class="row">
           <!-- Left col -->
           <div class="col-md-8">
             <!-- MAP & BOX PANE -->
@@ -842,7 +843,7 @@
             <!-- /.box -->
           </div>
           <!-- /.col -->
-        </div>
+        </div> --}}
         <!-- /.row -->
       </section>
       <!-- /.content -->

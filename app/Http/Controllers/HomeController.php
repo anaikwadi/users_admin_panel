@@ -34,7 +34,7 @@ class HomeController extends Controller
         ];
 
         $ip = \Request::ip();
-        \Log::notice('User login '.\Auth::User()->name.' with IP Address = '.($ip));   
+        \Log::notice('User '.\Auth::User()->name.' login with IP Address = '.($ip));   
 
         return view('admin.dashboard',$data);
     }

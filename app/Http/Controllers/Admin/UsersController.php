@@ -10,11 +10,9 @@ use App\Models\Permission;
 
 class UsersController extends Controller
 {
-    //
-
     public function __construct()
     {
-        //$this->middleware('role:users');
+        $this->middleware('auth');
     }
 
     // Index Page for Users
@@ -63,6 +61,9 @@ class UsersController extends Controller
         $role = Role::find($request->input('role_id'));
 
         $user->attachRole($role);
+
+        $ip = \Request::ip();
+        \Log::info('Users Control Panel User "'.$user->name .'" Added by User '.\Auth::User()->name.' with IP Address = '.($ip));   
 
         return redirect()->route('users.index')->with('success', "The user <strong>$user->name</strong> has successfully been created.");
     }
@@ -142,6 +143,9 @@ class UsersController extends Controller
             //$permission = Permission::find($request->input('permission_id'));
             //$user->attachPermission($permission);
 
+            $ip = \Request::ip();
+            \Log::warning('Users Control Panel User "'.$user->name .'" Updated by User '.\Auth::User()->name.' with IP Address = '.($ip));   
+
             return redirect()->route('users.index')->with('success', "The user <strong>$user->name</strong> has successfully been updated.");
         } catch (ModelNotFoundException $ex) {
             if ($ex instanceof ModelNotFoundException) {
@@ -164,6 +168,9 @@ class UsersController extends Controller
             }
 
             $user->delete();
+
+            $ip = \Request::ip();
+            \Log::alert('Users Control Panel User "'.$user->name .'" Deleted by User '.\Auth::User()->name.' with IP Address = '.($ip));   
 
             return redirect()->route('users.index')->with('success', "The user <strong>$user->name</strong> has successfully been archived.");
         } catch (ModelNotFoundException $ex) {

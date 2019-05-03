@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class RolesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     // Roles Listing Page
     public function index()
     {
@@ -54,6 +60,9 @@ class RolesController extends Controller
             'display_name' => $request->input('display_name'),
             'description' => $request->input('description'),
         ]);
+
+        $ip = \Request::ip();
+        \Log::info('Roles Control Panel Role "'.$role->name .'" Created by User '.\Auth::User()->name.' with IP Address = '.($ip));   
 
         return redirect()->route('roles.index')->with('success', "The role <strong>$role->name</strong> has successfully been created.");
     }
@@ -126,6 +135,9 @@ class RolesController extends Controller
                 $role->attachPermission($value);
             }
 
+            $ip = \Request::ip();
+            \Log::warning('Roles Control Panel Role "'.$role->name .'" Updated by User '.\Auth::User()->name.' with IP Address = '.($ip));   
+
             return redirect()->route('roles.index')->with('success', "The role <strong>$role->name</strong> has successfully been updated.");
         } catch (ModelNotFoundException $ex) {
             if ($ex instanceof ModelNotFoundException) {
@@ -148,6 +160,9 @@ class RolesController extends Controller
             $role->permissions()->sync([]); // Delete relationship data
 
             $role->forceDelete(); // Now force delete will work regardless of whether the pivot table has cascading delete
+
+            $ip = \Request::ip();
+            \Log::alert('Roles Control Panel Role "'.$role->name .'" Deleted by User '.\Auth::User()->name.' with IP Address = '.($ip));   
 
             return redirect()->route('roles.index')->with('success', "The Role <strong>$role->name</strong> has successfully been archived.");
         } catch (ModelNotFoundException $ex) {

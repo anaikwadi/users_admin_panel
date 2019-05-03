@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class PermissionController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     // Permission Listing Page
     public function index()
     {
@@ -52,6 +58,9 @@ class PermissionController extends Controller
             'display_name' => $request->input('display_name'),
             'description' => $request->input('description'),
         ]);
+
+        $ip = \Request::ip();
+        \Log::info('Permissions Control Panel Permission "'.$permission->name .'" Added by User '.\Auth::User()->name.' with IP Address = '.($ip));   
 
         return redirect()->route('permission.index')->with('success', "The Permission <strong>$permission->name</strong> has successfully been created.");
     }
@@ -116,6 +125,9 @@ class PermissionController extends Controller
 
             $permission->save();
 
+            $ip = \Request::ip();
+            \Log::warning('Permissions Control Panel Permission "'.$permission->name .'" Updated by User '.\Auth::User()->name.' with IP Address = '.($ip));   
+
             return redirect()->route('permission.index')->with('success', "The permission <strong>$permission->name</strong> has successfully been updated.");
         } catch (ModelNotFoundException $ex) {
             if ($ex instanceof ModelNotFoundException) {
@@ -132,6 +144,9 @@ class PermissionController extends Controller
             $permission = Permission::findOrFail($id);
             DB::table("permission_role")->where('permission_id', $id)->delete();
             $permission->delete();
+
+            $ip = \Request::ip();
+            \Log::alert('Permissions Control Panel Permission "'.$permission->name .'" Deleted by User '.\Auth::User()->name.' with IP Address = '.($ip));   
             
             return redirect()->route('permission.index')->with('success', "The Role <strong>$permission->name</strong> has successfully been archived.");
         } catch (ModelNotFoundException $ex) {

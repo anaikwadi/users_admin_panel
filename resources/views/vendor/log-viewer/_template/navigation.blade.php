@@ -26,7 +26,7 @@
                     </a>
                 </li>
 
-                <li class="{{ Route::is('log-viewer::logs.list') ? 'active' : '' }}">
+                <li class="{{ Route::is('log-viewer::logs.logout') ? 'active' : '' }}">
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fa fa-sign-out"></i>Logout [ {{ Auth::User()->name }} ] 
                     </a>

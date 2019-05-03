@@ -8,7 +8,7 @@ Users, Roles, Permission Management, Also Included Logs
     - cp .env.example .env</pre>
 </li>
     
-<li>Add Following Line In .env file to generate daily logs (if already not added ),
+<li>Add Following Line in .env to generate daily logs (if already not exists ),
 <pre>
     - APP_LOG=daily
 </li>

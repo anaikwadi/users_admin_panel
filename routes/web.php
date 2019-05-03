@@ -11,17 +11,9 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('front.home');
-// });
-
 Route::get('/', function () {
     return view('auth.login');
 });
-
-// Route::get('/admin', function () {
-//     return view('auth.login');
-// });
 
 Auth::routes();
 

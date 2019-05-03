@@ -32,7 +32,10 @@ class HomeController extends Controller
             'n_logged' => $n_logged,
 
         ];
-        // return view('admin_layouts.layout',$data);
+
+        $ip = \Request::ip();
+        \Log::notice('User login '.\Auth::User()->name.' with IP Address = '.($ip));   
+
         return view('admin.dashboard',$data);
     }
 

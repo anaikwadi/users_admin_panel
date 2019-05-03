@@ -78,7 +78,7 @@ class RegisterController extends Controller
         $role = Role::find($data['role']);
 
         $ip = \Request::ip();
-        // \Log::info('New User Registration "'.$data['name'].'" with IP Address = '.($ip));
+        \Log::info('New User Registration "'.$data['name'].'" with IP Address = '.($ip));
 
         return $user->attachRole($role);
     }

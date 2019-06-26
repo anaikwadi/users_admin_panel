@@ -33,6 +33,11 @@
 
         @include('admin_layouts.navmenu')
 
+        <!-- Content Wrapper. Contains page content -->
+        <div class="wrapper" style="margin-left:12%;">
+            @include('admin_layouts.flash-message.flash-message')
+         </div>
+
         @yield('content')
 
         @include('admin_layouts.footer')

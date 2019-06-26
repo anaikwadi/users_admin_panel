@@ -22,6 +22,7 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 // Administrator & SuperAdministrator Control Panel Routes
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'middleware' => ['role:administrator|superadministrator'], 'namespace' => 'Admin'], function () {
+// Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'middleware' => ['role:administrator|superadministrator|user','permission:create-users,require_all'], 'namespace' => 'Admin'], function () {
     Route::resource('users', 'UsersController');
     Route::resource('permission', 'PermissionController');
     Route::resource('roles', 'RolesController');

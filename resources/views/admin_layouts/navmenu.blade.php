@@ -22,6 +22,7 @@
 
              {{-- Users Control Panel Start --}}
             @role(['superadministrator','administrator'])
+            {{-- @role(['superadministrator','administrator','user']) --}}
             <li class="header">Users Control</li>
             <li class="treeview">
                 <a href="#">

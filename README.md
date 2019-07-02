@@ -19,15 +19,17 @@ Users, Roles, Permission Management, Also Included Logs
 </li>
 
 <li>Update the database name, username & password. You can check the config/laratrust_seeder.php to create your own roles and permission level with users. This is only for seeding purpose and quick view.
-<pre>
+<pre>  
+    - php artisan key:generate
+    - php artisan migrate
+    - php artisan db:seed
     - php artisan cache:clear
     - php artisan config:cache
     - php artisan view:clear
     - php artisan clear-compiled
     - truncate -s 0 storage/logs/laravel.log
-    - php artisan migrate
-    - php artisan db:seed
-    - php artisan key:generate</pre> </li>
+    </pre> 
+</li>
 
 </ul>
 
